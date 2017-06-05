@@ -11,9 +11,25 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+
+Route::group(['namespace' => 'Site'], function () {
+  Route::get('/categoria/{id}', 'SiteController@categoria');
+//Opcional - ?id
+  Route::get('/categoria2/{id?}', 'SiteController@categoriaOp');
+
+
+// artisan make:controller SiteController
+  Route::get('/', 'SiteController@index');
+
+  Route::get('/contato', 'SiteController@contato');
 });
+
+
+
 
 //Route::get('/empresa', function () {
 ////    return view('empresa');
