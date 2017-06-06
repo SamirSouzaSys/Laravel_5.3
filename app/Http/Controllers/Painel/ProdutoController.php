@@ -34,7 +34,7 @@ class ProdutoController extends Controller
      * @return \Illuminate\Http\Response
      */
 //    public function store(Request $request, \App\User $user)
-    public function store(Request $request, \App\User $user)
+    public function store(Request $request)
     {
     }
 
