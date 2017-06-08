@@ -1,3 +1,11 @@
+##Learning Laravel
+
+Some references used by me
+
+- Class videos from the youtube channel: 
+<a href="https://www.youtube.com/watch?v=iPTxznidNHo&list=PLVSNL1PHDWvR3PeLXz6nvBkDhv1IQk4wP">Especializa TI - laravel 5.3</a>
+
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
