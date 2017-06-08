@@ -1,4 +1,4 @@
-##Learning Laravel
+## Learning Laravel
 
 Some references used by me
 
@@ -14,6 +14,8 @@ Some references used by me
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
+
+
 
 ## About Laravel
 

@@ -25,10 +25,12 @@ class SiteController extends Controller
   public function index()
   {
     $title = 'Titulo teste';
+    $var1 = '123';
+    $arrayData = [1,2,3,4,5,6,7,8,9];
 
     $xss = '<script> alert("Ataque XSS")</script>';
 //    return view('teste',["teste" => $teste]);
-    return view('site.home.index',compact('title','xss') );
+    return view('site.home.index',compact('title','xss', 'var1','arrayData') );
   }
 
   public function contato()
