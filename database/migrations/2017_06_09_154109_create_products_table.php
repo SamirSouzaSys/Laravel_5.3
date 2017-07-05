@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
           $table->string('name',150);
           $table->integer('number');
           $table->boolean('active');
-          $table->string('image',20);
+          $table->string('image',200)->nullable();
           $table->enum('category',['eletronics','moveis', 'limpeza','banho']);
           $table->text('description');
           $table->timestamps();
