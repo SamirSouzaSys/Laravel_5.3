@@ -11,7 +11,10 @@
 |
 */
 
+// Rotas Controller - Testes
+Route::get('/painel/produtos/tests','Painel\ProdutoController@tests');
 Route::resource('painel/produtos','Painel\\ProdutoController');
+
 
 Route::group(['namespace' => 'Site'], function () {
 //Route::group(['namespace' => 'Site', 'middleware' => 'auth], function () {
