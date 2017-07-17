@@ -99,7 +99,8 @@ class ProdutoController extends Controller
      * Não recomendado o insert
      * $insert = $this->product->insert([
      */
-    $insert = $this->product->create([
+    /*
+     * $insert = $this->product->create([
       'name'        => "Nome do produto 2",
       'number'      => 131313,
       'active'      => true,
@@ -111,6 +112,51 @@ class ProdutoController extends Controller
       return "Inserido com sucesso!, ID: {$insert->id}";
     else
       return 'Falha ao inserir!';
+    */
+
+//    dd($prod->name);
+    /*
+     * MODO Improdutivo
+     * $prod = $this->product->find(5);
+
+    $prod->name         = "Nome do produto UPDATE";
+    $prod->number       = "13222";
+    $prod->active       = true;
+    $prod->category     = "eletronics";
+    $prod->description  = "UPDATE descrição desse produto aqui";
+    $update = $prod->save();
+
+    if($update)
+      return "Atualizado com Sucesso!";
+    else
+      return "Falha ao atualizar";*/
+
+    /*
+     * FORMA INTERESSANTE
+     * $prod = $this->product->find(6);
+    $update = $prod->update([
+      'name'        => "UPDATE TEST Nome do produto 2",
+      'number'      => 11111111,
+    ]);
+
+    if($update)
+      return "Atualizado com Sucesso!";
+    else
+      return "Falha ao atualizar";
+    */
+
+    $update = $this->product
+                    ->where('number',11111111)
+                    ->update([
+                          'name'   => "UPDATE__ TEST Nome do produto 2",
+                          'number' => 11111111,
+    ]);
+
+    if($update)
+      return "Atualizado com Sucesso!";
+    else
+      return "Falha ao atualizar";
+
 
     //Forma não usada - menos produtiva
     /*    $prod = $this->product;
