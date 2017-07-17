@@ -145,17 +145,17 @@ class ProdutoController extends Controller
       return "Falha ao atualizar";
     */
 
-    $update = $this->product
-                    ->where('number',11111111)
-                    ->update([
-                          'name'   => "UPDATE__ TEST Nome do produto 2",
-                          'number' => 11111111,
-    ]);
-
-    if($update)
-      return "Atualizado com Sucesso!";
-    else
-      return "Falha ao atualizar";
+//    $update = $this->product
+//                    ->where('number',11111111)
+//                    ->update([
+//                          'name'   => "UPDATE__ TEST Nome do produto 2",
+//                          'number' => 11111111,
+//    ]);
+//
+//    if($update)
+//      return "Atualizado com Sucesso!";
+//    else
+//      return "Falha ao atualizar";
 
 
     //Forma não usada - menos produtiva
@@ -176,6 +176,21 @@ class ProdutoController extends Controller
 
 //    $this->product->insert();
 //      return "ok";
-  }
+
+//      $prod = $this->product->find(6);
+//      $delete = $prod->delete();
+
+//      $prod = $this->product->destroy([1,2,3]);
+//      $prod = $this->product->destroy(8);
+
+      $prod = $this->product
+                    ->where('number',131313)
+                    ->delete();
+
+    if($prod)
+        return "Deletado OK!";
+      else
+        return "Falha ao deletar";
+    }
 
 }
