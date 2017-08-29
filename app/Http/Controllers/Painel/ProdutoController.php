@@ -38,7 +38,7 @@ class ProdutoController extends Controller
   public function create()
   {
     $title = 'Cadastrar Novo Produto';
-    $categorys = ['eletronicos', 'moveis', 'limpeza', 'banho'];
+    $categorys = ['eletronics', 'moveis', 'limpeza', 'banho'];
 //    return "#Form Cad";
     return view('painel.products.create', compact('title', 'categorys'));
   }
@@ -77,7 +77,29 @@ class ProdutoController extends Controller
 
     //valida os dados
 //    $this->validate($request, $this->product->rules,$messages );
-    $this->validate($request, $this->product->rules);
+//    $this->validate($request, $this->product->rules);
+
+    //Manualmente
+//    $validate = Validator::make($dataForm, $this->product->rules);
+
+    //Messages
+    $messages = [
+      'name.required'   => "O campo nome é de preenchimento obrigatório",
+      'number.required' => "O campo Number é de preenchimento obrigatório",
+      'number.numeric'  => "Precisa ser apenas número!",
+    ];
+
+
+    //Outra forma
+    $validate = validator($dataForm, $this->product->rules,$messages);
+    if( $validate->fails() ){
+      return redirect()
+                ->route('produtos.create')
+                ->withErrors($validate)
+                ->withInput();
+    }
+
+
 
     // Faz o cadastro no BD
 //      $insert = $this->product->insert($dataForm);
