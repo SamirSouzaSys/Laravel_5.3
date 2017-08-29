@@ -55,10 +55,8 @@ class ProdutoController extends Controller
     /*
      * array:6 [▼
         "_token" => "NE5iYvtO5j4BZnSsAQjiJmk632S8Q5XRmlM17KPM"
-        "name" => "NomeTexto"
-        "active" => "1"
-        "number" => "998877"
-        "category" => "moveis"
+        "name" => "NomeTexto"        "active" => "1"
+        "number" => "998877"         "category" => "moveis"
         "description" => "descrição texto"
       ]
     */
@@ -77,6 +75,9 @@ class ProdutoController extends Controller
 //          $dataForm['active'] = 1;
     $dataForm['active'] = (!isset($dataForm['active'])) ? 0 : 1;
 
+    //valida os dados
+//    $this->validate($request, $this->product->rules,$messages );
+    $this->validate($request, $this->product->rules);
 
     // Faz o cadastro no BD
 //      $insert = $this->product->insert($dataForm);
