@@ -15,6 +15,7 @@ class ProdutoController extends Controller
   {
     $this->product = $product;
   }
+
   /**
    * Display a listing of the resource.
    *
@@ -26,7 +27,7 @@ class ProdutoController extends Controller
 
     $products = $this->product->all();
 
-    return view('painel.products.index', compact('products','title'));
+    return view('painel.products.index', compact('products', 'title'));
   }
 
   /**
@@ -36,24 +37,64 @@ class ProdutoController extends Controller
    */
   public function create()
   {
-    //
+    $title = 'Cadastrar Novo Produto';
+    $categorys = ['eletronicos', 'moveis', 'limpeza', 'banho'];
+//    return "#Form Cad";
+    return view('painel.products.create', compact('title', 'categorys'));
   }
 
   /**
    * Store a newly created resource in storage.
    *
-   * @param  \Illuminate\Http\Request  $request
+   * @param  \Illuminate\Http\Request $request
    * @return \Illuminate\Http\Response
    */
 //    public function store(Request $request, \App\User $user)
   public function store(Request $request)
   {
+    /*
+     * array:6 [▼
+        "_token" => "NE5iYvtO5j4BZnSsAQjiJmk632S8Q5XRmlM17KPM"
+        "name" => "NomeTexto"
+        "active" => "1"
+        "number" => "998877"
+        "category" => "moveis"
+        "description" => "descrição texto"
+      ]
+    */
+//    dd($request->all());
+//    dd($request->only(['name','number']));
+//    dd($request->except(['_token','category']));
+//    dd($request->input('name'));
+
+    // Recupera dados do formulário
+//      $dataForm = $request->except('_token');
+    $dataForm = $request->all();
+
+//      if( $dataForm['active'] == '' )
+//          $dataForm['active'] = 0;
+//      else
+//          $dataForm['active'] = 1;
+    $dataForm['active'] = (!isset($dataForm['active'])) ? 0 : 1;
+
+
+    // Faz o cadastro no BD
+//      $insert = $this->product->insert($dataForm);
+    $insert = $this->product->create($dataForm);
+
+    if ($insert)
+      return redirect()->route('produtos.index');
+    else
+      return redirect()->back();
+
+
+    return 'Cadastrando...';
   }
 
   /**
    * Display the specified resource.
    *
-   * @param  int  $id
+   * @param  int $id
    * @return \Illuminate\Http\Response
    */
   public function show($id)
@@ -64,7 +105,7 @@ class ProdutoController extends Controller
   /**
    * Show the form for editing the specified resource.
    *
-   * @param  int  $id
+   * @param  int $id
    * @return \Illuminate\Http\Response
    */
   public function edit($id)
@@ -75,8 +116,8 @@ class ProdutoController extends Controller
   /**
    * Update the specified resource in storage.
    *
-   * @param  \Illuminate\Http\Request  $request
-   * @param  int  $id
+   * @param  \Illuminate\Http\Request $request
+   * @param  int $id
    * @return \Illuminate\Http\Response
    */
   public function update(Request $request, $id)
@@ -87,7 +128,7 @@ class ProdutoController extends Controller
   /**
    * Remove the specified resource from storage.
    *
-   * @param  int  $id
+   * @param  int $id
    * @return \Illuminate\Http\Response
    */
   public function destroy($id)
@@ -175,7 +216,6 @@ class ProdutoController extends Controller
           return 'Falha ao inserir!';*/
 
 
-
 //    $this->product->insert();
 //      return "ok";
 
@@ -185,14 +225,14 @@ class ProdutoController extends Controller
 //      $prod = $this->product->destroy([1,2,3]);
 //      $prod = $this->product->destroy(8);
 
-      $prod = $this->product
-                    ->where('number',131313)
-                    ->delete();
+    $prod = $this->product
+      ->where('number', 131313)
+      ->delete();
 
-    if($prod)
-        return "Deletado OK!";
-      else
-        return "Falha ao deletar";
-    }
+    if ($prod)
+      return "Deletado OK!";
+    else
+      return "Falha ao deletar";
+  }
 
 }
