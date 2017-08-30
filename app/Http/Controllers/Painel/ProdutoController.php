@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Painel;
 
+use App\Http\Requests\Painel\ProductFormRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Painel\Product;
@@ -50,7 +51,8 @@ class ProdutoController extends Controller
    * @return \Illuminate\Http\Response
    */
 //    public function store(Request $request, \App\User $user)
-  public function store(Request $request)
+//  public function store(Request $request)
+  public function store(ProductFormRequest $request)
   {
     /*
      * array:6 [▼
@@ -83,25 +85,18 @@ class ProdutoController extends Controller
 //    $validate = Validator::make($dataForm, $this->product->rules);
 
     //Messages
-    $messages = [
-      'name.required'   => "O campo nome é de preenchimento obrigatório",
-      'number.required' => "O campo Number é de preenchimento obrigatório",
-      'number.numeric'  => "Precisa ser apenas número!",
-    ];
+//    $messages =
 
+      //Outra forma
+//    $validate = validator($dataForm, $this->product->rules,$messages);
+//    if( $validate->fails() ){
+//      return redirect()
+//                ->route('produtos.create')
+//                ->withErrors($validate)
+//                ->withInput();
+//    }
 
-    //Outra forma
-    $validate = validator($dataForm, $this->product->rules,$messages);
-    if( $validate->fails() ){
-      return redirect()
-                ->route('produtos.create')
-                ->withErrors($validate)
-                ->withInput();
-    }
-
-
-
-    // Faz o cadastro no BD
+      // Faz o cadastro no BD
 //      $insert = $this->product->insert($dataForm);
     $insert = $this->product->create($dataForm);
 
