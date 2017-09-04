@@ -41,7 +41,7 @@ class ProdutoController extends Controller
     $title = 'Cadastrar Novo Produto';
     $categorys = ['eletronics', 'moveis', 'limpeza', 'banho'];
 //    return "#Form Cad";
-    return view('painel.products.create', compact('title', 'categorys'));
+    return view('painel.products.create-edit', compact('title', 'categorys'));
   }
 
   /**
@@ -87,7 +87,7 @@ class ProdutoController extends Controller
     //Messages
 //    $messages =
 
-      //Outra forma
+    //Outra forma
 //    $validate = validator($dataForm, $this->product->rules,$messages);
 //    if( $validate->fails() ){
 //      return redirect()
@@ -96,7 +96,7 @@ class ProdutoController extends Controller
 //                ->withInput();
 //    }
 
-      // Faz o cadastro no BD
+    // Faz o cadastro no BD
 //      $insert = $this->product->insert($dataForm);
     $insert = $this->product->create($dataForm);
 
@@ -128,8 +128,17 @@ class ProdutoController extends Controller
    */
   public function edit($id)
   {
-    //
+//    return "Editar item {$id}";
+
+    $product = $this->product->find($id);
+
+    $title = "Editar Produto: {$product->name}";
+    $categorys = ['eletronics', 'moveis', 'limpeza', 'banho'];
+
+    return view('painel.products.create-edit', compact('title','categorys', 'product'));
+
   }
+
 
   /**
    * Update the specified resource in storage.
@@ -140,7 +149,7 @@ class ProdutoController extends Controller
    */
   public function update(Request $request, $id)
   {
-    //
+    return "Editando o item de id {$id}";
   }
 
   /**
